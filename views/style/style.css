@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&display=swap');
+*{
+    margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'Poppins',sans-serif; */
+}
+.navs{
+    display: flex;
+    flex-direction: row;
+}
+.navs .logo{
+    font-family: 'Silkscreen', cursive;
+}
+.bg{
+    background: url(/../../../../bg/bg.jpg) no-repeat center center fixed;
+    width: 100vw;
+    height:max-content ;
+}
+.fb{
+    width: 100vw;
+    height: max-content;
+    background-color:rgb(22, 2, 22);
+    color: antiquewhite;
+}
+.fL{
+    margin:10px 0;   
+}
+.fL a{
+    text-decoration: none;
+}
+.fL a img{
+    width: 25px;
+    margin: 4px 6px;
+}
+
+.form_bg{
+    width: 100%;
+    height:max-content;
+    padding:15px 0;
+    background-image: linear-gradient(30deg,yellow,orange,rgb(120, 232, 232));
+}
+.form_box{
+    width: 55vw;
+    height: max-content;
+    padding:20px; 
+    background: #0000009c;
+    border:8px double orangered;
+    background-image: url(/bg/bgr.png);
+    background-size: 100% 100%;
+    /* width: 80%; */
+}
+.form_left{
+    width: 35vw;
+    display: block;
+    background: #00000063;
+    padding: 10px 50px;
+}
+.form_left h3:first-child{
+border-bottom: 4px solid plum;
+}
+.form_left h3{
+    
+    color: rgb(47, 2, 248);
+    font-style:italic;
+    background-color: greenyellow;
+    text-align: center;
+    margin: 5px 0;
+}
+.form_left p{
+    color: red;
+    background-color: greenyellow;
+}
+.form_left input{
+    display:block;
+    background: none;
+    border:3px dotted greenyellow;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 5px 10px;
+    color: #fff;
+    position: relative;
+    margin-top: 18px;
+}
+.form_left svg {
+    width: 25px;
+    position:absolute;
+    margin-left: -40px;
+    cursor:pointer
+}
+.form_left img{
+    width: 25px;
+    cursor:pointer;
+    margin-left: -40px;
+}
+.svs{ 
+    margin-top: 25px;
+    position:absolute;
+    margin-left: -40px;
+    cursor:pointer
+}
+::placeholder {
+    color: rgb(0, 255, 0);
+  }
+textarea:focus, input:focus{
+    outline: none;
+    background-color: rgb(77, 155, 224);
+    opacity: 0.8;
+    color: #fff;
+}
+
+
+.form_right {
+    opacity: 0.6;
+}

@@ -1,0 +1,45 @@
+extends layout.pug
+block style
+    style 
+        include ../node_modules/bootstrap/dist/css/bootstrap.min.css
+        include style/style.css
+    block scripts
+        script(type="text/javascript" src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js', integrity='sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3', crossorigin='anonymous')
+        script( src='/style/coustom.js')
+block content
+    div.form_bg.d-flex.justify-content-center.align-items-center
+        div.form_box.rounded
+            
+            div.form_left
+                h3.hh Ragistration Form
+                h3.hh #{succ} 
+                p #{alredyUse}
+                form(action="/ragistration" method="post" id="content")
+                    lable
+                        svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 448 512' )
+                            // ! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.
+                            path(d='M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z')
+                    input(type="text" name="userName" id="userName" placeholder="* User name" required) 
+                    lable
+                        svg.svs(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 576 512' )
+                            // ! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.
+                            path(d='M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V428.7c-2.7 1.1-5.4 2-8.2 2.7l-60.1 15c-3 .7-6 1.2-9 1.4c-.9 .1-1.8 .2-2.7 .2H240c-6.1 0-11.6-3.4-14.3-8.8l-8.8-17.7c-1.7-3.4-5.1-5.5-8.8-5.5s-7.2 2.1-8.8 5.5l-8.8 17.7c-2.9 5.9-9.2 9.4-15.7 8.8s-12.1-5.1-13.9-11.3L144 381l-9.8 32.8c-6.1 20.3-24.8 34.2-46 34.2H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h8.2c7.1 0 13.3-4.6 15.3-11.4l14.9-49.5c3.4-11.3 13.8-19.1 25.6-19.1s22.2 7.8 25.6 19.1l11.6 38.6c7.4-6.2 16.8-9.7 26.8-9.7c15.9 0 30.4 9 37.5 23.2l4.4 8.8h8.9c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7L384 203.6V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM549.8 139.7c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM311.9 321c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L512.1 262.7l-71-71L311.9 321z')
+                    input(type="text" name="fulName" id="fullName" placeholder="* Your Full name " required ) 
+                    lable 
+                        svg.svs(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 512 512' )
+                            // ! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.
+                            path(d='M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z')
+                    input(type="email" name="email" id="email" placeholder="* Email" required )
+                    lable 
+                        <svg class="svs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+                    input(type="number" name="phoneN" id="phoneN" placeholder="* Phone Number" required ) 
+                    lable 
+                        img.svs(src="/bg/lock.svg" id="pasSvg" onclick="unlock('A')")
+
+                    input(type="password" name="pass" id="pass" placeholder="* Enter your password" required  )
+                    lable 
+                        img.svs(src="/bg/lock.svg" id="erpassSvg" onclick="unlock('b')")
+                    input(type="password" name="Repass" id="Repass" placeholder="* ReEnter your password " required )
+                    p #{psssNotMatch}
+                    button(type="submit" class="btn btn-info mt-5")
+                        |Submit
