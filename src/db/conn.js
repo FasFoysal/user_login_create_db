@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const validate = require("validator")
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+
 main().then(()=>console.log("Database connected")).catch(err => console.log("Databae not connected"+err));
 
 async function main() {
@@ -34,8 +37,34 @@ const kittySchema = new mongoose.Schema({
   Repass:{
     type:String,
   required:true
-  }
+  },
+  tokens:[{
+    token:{
+      type:String
+    }
+  }]
   });
+  // token ganerate
+kittySchema.methods.tokenG = async function(){
+  try{
+    const newToken = jwt.sign({id:this._id.toString()},"kajfdlk903u4jkhdakjd0fskdf",{expiresIn: "2 minutes"});
+    this.tokens = this.tokens.concat({token:newToken})
+    await this.save();
+    console.log("Token ganerate")
+  }catch(err){
+    console.log("Token not ganerate")
+  }
+}
+
+  // password bcrypt
+  kittySchema.pre("save", async function(next){
+    if(this.isModified){
+      this.pass = await bcrypt.hash(this.pass ,8);
+      // this.Repass = await bcrypt.hash(this.Repass ,8);
+    // this.Repass = undefined;
+    next();
+    }
+  })
 
 const friend_family = mongoose.model('friend_family', kittySchema);
 module.exports = friend_family;
