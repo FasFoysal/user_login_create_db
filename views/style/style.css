@@ -11,6 +11,7 @@
 }
 .navs .logo{
     font-family: 'Silkscreen', cursive;
+    color: orangered;
 }
 .bg{
     background: url(/../../../../bg/bg.jpg) no-repeat center center fixed;
