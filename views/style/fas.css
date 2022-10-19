@@ -15,7 +15,43 @@
     flex-direction: row;
     padding: 8px 0;
     position:fixed;
+    z-index: 100;
 }
+.navbox{
+    width: 15vw;
+    height: 250px;
+    border: 3px solid purple;
+    background-color: #000000bf;
+    position: absolute;
+    z-index: 95;
+    top: 0;
+    right: 35px;
+    margin-top: 80px;
+    color: #fff;
+    padding: 20px 15px;
+    display: none;
+    
+}
+.navbox svg{
+    width: 2vw;
+    background-color: #fff;
+    margin-left: 100px;
+    margin-top: -25px;
+    cursor: pointer;
+}
+.animate {
+    animation: animatetop 0.4s
+}
+
+@keyframes animatetop {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+  }
+
 .logo{
     font-family: 'Silkscreen', cursive;
     color: orangered;

@@ -18,6 +18,14 @@ function unlock(val){
             Repass.type = "password";
             },3000)
         
+    } 
+}
+
+function boxhide(){
+    const boxdiv = document.getElementById("boxdiv");
+    if(boxdiv.style.display == "block"){;
+        boxdiv.style.display = "none"
+    }else{
+        boxdiv.style.display = "block";
     }
-    
 }

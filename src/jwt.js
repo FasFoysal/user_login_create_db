@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const jwtS =  jwt.sign({_id:"634cec5a50c6cb62e1e74da4"},"kajfdlk903u4jkhdakjd0fskdf",{
+const jwtS =  jwt.sign({_id:"634cec5a50c6cb62e1e74da4"},"mynameisfoysalahmedshounthiistokendbs",{
     expiresIn:"2  minutes"
 })
 console.log(jwtS)

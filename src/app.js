@@ -2,9 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bcrypt = require("bcrypt");
-
-
-
 require("./db/conn");
 const friend_family = require("./db/conn");
 
@@ -37,8 +34,7 @@ app.post("/ragistration", async (req, res) => {
       const silence = new friend_family(req.body);
 
       // token ganerate
-      const tokenLog = await silence.tokenG();
-      console.log(tokenLog) 
+      // const tokenLog = await silence.tokenGanerate();
 
       await silence.save();
       console.log(silence);
@@ -54,25 +50,24 @@ app.post("/ragistration", async (req, res) => {
 app.get("/login", (req, res) => {
   res.status(200).render("login");
 });
-
+app.get('/fas', async (req,res) =>{
+  res.status(200).render('fas');
+})
 app.post('/fas', async (req,res) =>{
   try {
     const userMail = req.body.userName;
     const userN = req.body.userName;
     const pass = req.body.pass;
-    // const silence = new friend_family(req.body);
     const dbUserMail = await friend_family.findOne({$or: [{ email: userMail }, { userName: userN }]});
     // password crack
     const pasBcryptCrack = await bcrypt.compare(pass,dbUserMail.pass)
+    console.log("password match: "+pasBcryptCrack)
+    ;
 
-    if (pasBcryptCrack)
-    //  if(pass === dbUserMail.pass)
-     {
+     if(pasBcryptCrack){
       // token ganerate
-      // const tokenLog = await silence.tokenG();
-      // console.log(tokenLog) 
-
-      res.render('fas',{user:dbUserMail.fulName,mail:dbUserMail.email,phone:dbUserMail.phoneN,pass:pass})   
+      const tokenLog = await dbUserMail.tokenGanerate()
+      res.render('fas',{user:dbUserMail.fulName,mail:dbUserMail.email,phone:dbUserMail.phoneN,pass:dbUserMail.pass})   
     } else {
       res.status(200).render("login", { UserPassNotMatch: UserPassNotMatch });
     }
