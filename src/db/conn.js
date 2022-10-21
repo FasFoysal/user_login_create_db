@@ -13,6 +13,7 @@ await mongoose.connect(process.env.MONGO_HOST);
 }
 
 const kittySchema = new mongoose.Schema({
+   
   userName: {
     type: String,
     required: true,
@@ -40,40 +41,28 @@ const kittySchema = new mongoose.Schema({
   },
   Repass: {
     type: String,
-  },
-  tokens: [
-    {
-      token: {
-        type: String,
-      },
-    },
-  ],
+  }
+ 
 });
-// token ganerate
-// kittySchema.methods.tokenGen = async function () {
-//   try {
-//     const token = jwt.sign({ _id:this._id.toString() },process.env.SECRET_KEY,{expiresIn: "2 minutes"});
-//     this.tokens = this.tokens.concat(token);
-//     await this.save();
-//     return token;
-//   } catch (err) {
-//     console.log("Token not ganerate");
-//   }
-// };
 kittySchema.methods.tokenGanerate = async function(){
   try{
-    const newToken = jwt.sign({id:this._id.toString()},"process.env.SECRET_KEY",{expiresIn: "2 minutes"});
-    this.tokens = this.tokens.concat({token:newToken})
-    console.log("New token is: "+ newToken)
-    await this.save();
+    const newToken = jwt.sign({_id:this._id
+    },process.env.SECRET_KEY,);
+    // this.tokens = this.tokens.concat({token:newToken})
+    // id:this._id.toString()
+    // this.token = newToken;
+   return newToken;
+    // await this.save();
   }catch(err){
     console.log(err)}}
-// password bcrypt
 
+// password bcrypt
 kittySchema.pre("save", async function(next) {
   if (this.isModified) {
-    this.pass = await bcrypt.hash(this.pass, 8);
-    // this.Repass = undefined;
+    const salt = await bcrypt.genSaltSync(10);
+    this.pass = await bcrypt.hash(this.pass, salt);
+    // hashSync
+    this.Repass = undefined;
     next();
   }
 });
