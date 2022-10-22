@@ -3,9 +3,10 @@ const app = express();
 const path = require("path");
 const bcrypt = require("bcrypt");
 const cookieParser = require('cookie-parser')
+
 require("./db/conn");
 const friend_family = require("./db/conn");
-const author = require("./db/author")
+const author = require("./db/author");
 
 const port = process.env.PORT || 80;
 
@@ -55,6 +56,8 @@ app.post("/ragistration", async (req, res) => {
 app.get("/login", (req, res) => {
   res.status(200).render("login");
 });
+
+
 app.post('/fas', async (req,res) =>{
   try {
     const userMail = req.body.userName;
@@ -71,12 +74,11 @@ app.post('/fas', async (req,res) =>{
       console.log("New token is: "+ tokenLog)
       // coocke save
       res.cookie("jwt",tokenLog,{
-        expires:new Date(Date.now() + 50000),
-        // httpOnly:true
+        httpOnly:true
      })
      res.render('fas')
 // sicret page render
-     app.get("/sicret", author, (req,res)=>{
+     app.get("/sicret", author , (req,res)=>{
         console.log("Token verify successful")
         res.status(200).render('sicret',{user:dbUserMail.fulName,mail:dbUserMail.email,phone:dbUserMail.phoneN,pass:dbUserMail.pass});
       })
@@ -87,6 +89,16 @@ app.post('/fas', async (req,res) =>{
   } catch (err) {
     res.status(200).render("login", { invalidUser: invalidUser });
     console.log("invalid user")
+  }
+ 
+})
+
+app.get("/logout", author, async (req,res)=>{
+  try {
+    res.clearCookie("jwt");
+    res.status(200).render("login")
+  } catch (error) {
+    res.status(200).render("login")
   }
 })
 
